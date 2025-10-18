@@ -3,14 +3,17 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static int calculate(String input) throws IllegalArgumentException{
-        if(input.equals("")){
+        if(input == null){
             return 0;
         }
 
         StringBuilder regexStr = new StringBuilder("[,:");
         if(input.length() >= 5 && input.matches("^/{2}.\\\\n.*")){
             regexStr.append(input.charAt(2));
-            input = input.substring(5);
+            input =  input.substring(5);
+        }
+        if(input.isEmpty()){
+            return 0;
         }
         regexStr.append("]");
 
@@ -27,6 +30,9 @@ public class Application {
                     throw new IllegalArgumentException("피연산자는 양수여야 합니다! : " + num);
                 }
                 sum += num;
+            }
+            if(sum < 0){
+                throw new IllegalArgumentException("숫자 합이 정수의 최댓값을 초과했습니다! : " + sum);
             }
             return sum;
         }catch (NumberFormatException e) {
