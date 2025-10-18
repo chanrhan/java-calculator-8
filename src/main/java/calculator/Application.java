@@ -1,13 +1,20 @@
 package calculator;
 import camp.nextstep.edu.missionutils.Console;
-import org.assertj.core.internal.Numbers;
 
 public class Application {
     public static int calculate(String input) throws IllegalArgumentException{
         if(input.equals("")){
             return 0;
         }
-        String[] items = input.split("[,:]");
+
+        StringBuilder regexStr = new StringBuilder("[,:");
+        if(input.length() >= 5 && input.matches("^/{2}.\\\\n.*")){
+            regexStr.append(input.charAt(2));
+            input = input.substring(5);
+        }
+
+        regexStr.append("]");
+        String[] items = input.split(regexStr.toString());
         if(items.length == 0){
            throw new IllegalArgumentException("피연산자가 존재하지 않습니다!");
         }
