@@ -35,3 +35,8 @@ change #1. 문자열 내에서 커스텀 구분자를 판별하고, 기본 구�
 예외 처리 방식 변경
 - 기존: `calculate()`에서 예외 발생 시, `main()`에서 이를 catch 한 후 터미널 콘솔에 오류메세지 출력
 - 변경: `calculate()`에서 예외 발생 시 `main()` catch 하지 않고 그대로 전파
+
+### fix(Application): validate positive numbers in a string 
+
+예외 추가
+- 분할된 문자열에서, 파싱(parsing)된 정수가 양수가 아니라면, 예외 발생 

@@ -12,23 +12,28 @@ public class Application {
             regexStr.append(input.charAt(2));
             input = input.substring(5);
         }
-
         regexStr.append("]");
+
         String[] items = input.split(regexStr.toString());
         if(items.length == 0){
-           throw new IllegalArgumentException("피연산자가 존재하지 않습니다!");
+            throw new IllegalArgumentException("피연산자가 존재하지 않습니다!");
         }
 
         try{
-            int sum=0;
+            int sum=0, num;
             for(String item : items){
-                sum += Integer.parseInt(item);
+                num = Integer.parseInt(item);
+                if(num <= 0){
+                    throw new IllegalArgumentException("피연산자는 양수여야 합니다! : " + num);
+                }
+                sum += num;
             }
             return sum;
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("피연산자가 숫자 형식이 아닙니다!");
         }
     }
+
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
