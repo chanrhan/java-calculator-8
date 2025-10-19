@@ -11,13 +11,13 @@ public class StringAdditionCalculator {
      * 문자열을 분할하는 함수
      * 커스텀 구분자 패턴이 있다면, 커스텀 구분자도 분할 기준에 포함시킨다.
      * 문자열 내에 커스텀 구분자 패턴이 존재하고, 문자열 길이가 커스텀 구분자 패턴의 길이(=5)와 같다면, null 을 반환한다.
-    **/
+     **/
     private String[] separateString(String input) throws IllegalArgumentException {
         StringBuilder regexStr = new StringBuilder("[,:"); // 기본 구분자
 
         // 문자열의 길이가 5 이상이고, 커스텀 구분자 패턴이 존재할 경우, 커스텀 구분자를 인식
         if (input.length() >= 5 && input.matches("^/{2}.\\\\n.*")) {
-            // 문자열의 길이가 5라면, 커스텀 구분자 패턴 뒤에 수식(연산자 및 피연산자)이 없으므로 0을 반환하도록 함
+            // 문자열의 길이가 5라면, 커스텀 구분자 패턴 뒤에 수식(연산자 및 피연산자)이 없으므로 0을 반환
             if (input.length() == 5) {
                 return null;
             }
@@ -44,7 +44,7 @@ public class StringAdditionCalculator {
 
         regexStr.append("]");
 
-        return input.split(regexStr.toString()); // 문자열 분할
+        return input.split(regexStr.toString(), -1); // 문자열 분할
     }
 
     // 입력값을 바탕으로 연산을 수행하는 함수
@@ -56,7 +56,7 @@ public class StringAdditionCalculator {
 
         String[] items = separateString(input);
 
-        // 커스텀 구분자 패턴을 제외하고 남은 문자열이 없다면, 수식이 없으므로 0을 반환한다.
+        // 커스텀 구분자 패턴을 제외하고 남은 문자열이 없다면, 수식이 없으므로 0을 반환
         if (items == null) {
             return 0;
         }

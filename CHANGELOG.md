@@ -66,3 +66,8 @@
 - Google Java Style Guide 기준에 맞춰 코드 스타일 수정
 
 ### docs: add comments
+
+### fix: keep last empty token when splitting a string
+
+- 문자열을 분할할 때, 마지막 구분자의 뒷 문자열이 비어있을 경우, 해당 빈 값을 포함하도록 수정
+  - `String.split()` 메서드를 호출할 때 `limit` 인자를 -1로 설정 

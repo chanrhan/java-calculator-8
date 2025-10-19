@@ -15,6 +15,10 @@ class ApplicationTest extends NsTest {
             // 빈 문자열(=빈 줄)일 경우
             run("\n");
             assertThat(output()).contains("결과 : 0");
+
+            // 정상적인 연산
+            run("1,2:3");
+            assertThat(output()).contains("결과 : 6");
         });
     }
 
@@ -35,6 +39,10 @@ class ApplicationTest extends NsTest {
             assertThatThrownBy(() -> runException("1,p,3"))
                     .isInstanceOf(IllegalArgumentException.class);
             assertThatThrownBy(() -> runException("1,"))
+                    .isInstanceOf(IllegalArgumentException.class);
+
+            // 피연산자가 실수인 경우
+            assertThatThrownBy(() -> runException("1.23,4"))
                     .isInstanceOf(IllegalArgumentException.class);
 
             // 피연산자가 없는 경우
@@ -112,7 +120,6 @@ class ApplicationTest extends NsTest {
             // 커스텀 구분자 설정 패턴 안에 커스텀 구분자로 쓰일 문자가 없는 경우
             assertThatThrownBy(() -> runException("//\\n"))
                     .isInstanceOf(IllegalArgumentException.class);
-
 
             // 커스텀 구분자가 문자가 아닌 경우
             assertThatThrownBy(() -> runException("//2\\n123"))
