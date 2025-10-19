@@ -1,7 +1,6 @@
 package calculator;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -14,7 +13,7 @@ class ApplicationTest extends NsTest {
     void test(){
         assertSimpleTest(()->{
             // 빈 문자열(=빈 줄)일 경우
-            run("\n"); //
+            run("\n");
             assertThat(output()).contains("결과 : 0");
         });
     }
@@ -60,6 +59,36 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains("결과 : 10");
             run("//n\\n1,2n3:4");
             assertThat(output()).contains("결과 : 10");
+
+            // 커스텀 구분자에 정규식의 메타 문자가 올 경우
+            run("//.\\n1,2.3");
+            assertThat(output()).contains("결과 : 6");
+            run("//^\\n1,2^3");
+            assertThat(output()).contains("결과 : 6");
+            run("//$\\n1,2$3");
+            assertThat(output()).contains("결과 : 6");
+            run("//*\\n1,2*3");
+            assertThat(output()).contains("결과 : 6");
+            run("//+\\n1,2+3");
+            assertThat(output()).contains("결과 : 6");
+            run("//?\\n1,2?3");
+            assertThat(output()).contains("결과 : 6");
+            run("//{\\n1,2{3");
+            assertThat(output()).contains("결과 : 6");
+            run("//}\\n1,2}3");
+            assertThat(output()).contains("결과 : 6");
+            run("//[\\n1,2[3");
+            assertThat(output()).contains("결과 : 6");
+            run("//]\\n1,2]3");
+            assertThat(output()).contains("결과 : 6");
+            run("//\\\\n1,2\\3");
+            assertThat(output()).contains("결과 : 6");
+            run("//|\\n1,2|3");
+            assertThat(output()).contains("결과 : 6");
+            run("//(\\n1,2(3");
+            assertThat(output()).contains("결과 : 6");
+            run("//)\\n1,2)3");
+            assertThat(output()).contains("결과 : 6");
         });
     }
 
@@ -85,7 +114,15 @@ class ApplicationTest extends NsTest {
                     .isInstanceOf(IllegalArgumentException.class);
 
 
-            //
+            // 커스텀 구분자가 문자가 아닌 경우
+            assertThatThrownBy(()-> runException("//2\\n123"))
+                    .isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(()-> runException("// \\n1,2 3"))
+                    .isInstanceOf(IllegalArgumentException.class);
+
+            // 커스텀 구분자가 2개 이상의 문자로 이루어진 문자열일 경우
+            assertThatThrownBy(()-> runException("//*@\\n"))
+                    .isInstanceOf(IllegalArgumentException.class);
         });
     }
 

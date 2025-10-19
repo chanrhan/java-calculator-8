@@ -2,6 +2,9 @@ package calculator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+    private static final int[] regexMetaCharset = new int[]{
+        36,39,40,41,42,43,46,63,91,92,93,94,123,124,125
+    };
     public static int calculate(String input) throws IllegalArgumentException{
         if(input == null){
             return 0;
@@ -9,7 +12,18 @@ public class Application {
 
         StringBuilder regexStr = new StringBuilder("[,:");
         if(input.length() >= 5 && input.matches("^/{2}.\\\\n.*")){
-            regexStr.append(input.charAt(2));
+            char customSeparator = input.charAt(2);
+            if((customSeparator <= 32 || customSeparator == 127)
+                    || (customSeparator >= 48 && customSeparator <= 57)){ // 커스텀 문자가 0~9 사이의 숫자일 경우
+                throw new IllegalArgumentException("커스텀 구분자에는 숫자 또는 공백,제어 문자가 올 수 없습니다! : " + customSeparator);
+            }
+            for(int meta : regexMetaCharset){
+                if(customSeparator == meta){
+                    regexStr.append("\\");
+                    break;
+                }
+            }
+            regexStr.append(customSeparator);
             input =  input.substring(5);
         }
         if(input.isEmpty()){
