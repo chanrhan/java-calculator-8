@@ -1,4 +1,4 @@
-````- build: upgrade Gradle versions
+- build: upgrade Gradle versions
 - feat: setup project
 
 ## 2025-10-18
@@ -63,4 +63,6 @@
 
 ### style(format): adopt java code style conventions
 
-- Google Java Style Guide 기준에 맞춰 코드 스타일 수정 
+- Google Java Style Guide 기준에 맞춰 코드 스타일 수정
+
+### docs: add comments
