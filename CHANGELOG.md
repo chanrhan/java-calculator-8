@@ -70,4 +70,9 @@
 ### fix: keep last empty token when splitting a string
 
 - 문자열을 분할할 때, 마지막 구분자의 뒷 문자열이 비어있을 경우, 해당 빈 값을 포함하도록 수정
-  - `String.split()` 메서드를 호출할 때 `limit` 인자를 -1로 설정 
+  - `String.split()` 메서드를 호출할 때 `limit` 인자를 -1로 설정
+
+### refactor(split): change function name
+
+- `StringAdditionCalculator` 의 `separateString()`메서드명을 `split()`으로 변경
+  - 실제 `String.split()` 메서드를 참고하여, 직관적이고 간결한 이름을 선택 

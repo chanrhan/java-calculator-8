@@ -12,7 +12,7 @@ public class StringAdditionCalculator {
      * 커스텀 구분자 패턴이 있다면, 커스텀 구분자도 분할 기준에 포함시킨다.
      * 문자열 내에 커스텀 구분자 패턴이 존재하고, 문자열 길이가 커스텀 구분자 패턴의 길이(=5)와 같다면, null 을 반환한다.
      **/
-    private String[] separateString(String input) throws IllegalArgumentException {
+    private String[] split(String input) throws IllegalArgumentException {
         StringBuilder regexStr = new StringBuilder("[,:"); // 기본 구분자
 
         // 문자열의 길이가 5 이상이고, 커스텀 구분자 패턴이 존재할 경우, 커스텀 구분자를 인식
@@ -54,7 +54,7 @@ public class StringAdditionCalculator {
             return 0;
         }
 
-        String[] items = separateString(input);
+        String[] items = split(input);
 
         // 커스텀 구분자 패턴을 제외하고 남은 문자열이 없다면, 수식이 없으므로 0을 반환
         if (items == null) {
