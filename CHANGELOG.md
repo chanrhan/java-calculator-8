@@ -55,3 +55,8 @@
 - 커스텀 구분자에 정규식의 메타 문자가 올 경우 이스케이프 처리
   - 커스텀 구분자가 `. ^ $ * + ? { } [ ] \ | ( )` 중 하나일 경우, 바로 앞에 이스케이프 문자(\) 추가 
 - 위 변경사항을 검증하는 테스크 코드 추가 
+
+### refactor: extract calculate function into a class
+
+- 기존 `calculate()`을 `StringAdditionCalculator`클래스로 추출하여 분리 
+- `separateString()` 메서드를 생성하여 문자열을 분할하는 기능을 모듈화
