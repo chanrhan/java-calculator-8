@@ -1,4 +1,4 @@
-- build: upgrade Gradle versions
+````- build: upgrade Gradle versions
 - feat: setup project
 
 ## 2025-10-18
@@ -60,3 +60,7 @@
 
 - 기존 `calculate()`을 `StringAdditionCalculator`클래스로 추출하여 분리 
 - `separateString()` 메서드를 생성하여 문자열을 분할하는 기능을 모듈화
+
+### style(format): adopt java code style conventions
+
+- Google Java Style Guide 기준에 맞춰 코드 스타일 수정 
