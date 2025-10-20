@@ -45,7 +45,7 @@ public class StringAdditionCalculator {
      * 문자열 내에 커스텀 구분자 패턴이 존재하고, 문자열 길이가 커스텀 구분자 패턴의 길이(=5)와 같다면, null 을 반환한다.
      **/
     private String[] split(String input) throws IllegalArgumentException {
-        StringBuilder regexStr = new StringBuilder("[,:");
+        String regexStr = "\\[,:";
 
         // 문자열의 길이가 5 이상이고, 커스텀 구분자 패턴이 존재할 경우, 커스텀 구분자를 인식
         if (input.length() >= 5 && input.matches("^/{2}.\\\\n.*")) {
@@ -53,14 +53,14 @@ public class StringAdditionCalculator {
             if (input.length() == 5) {
                 return null;
             }
-            regexStr.append(extractCustomSeparator(input));
+            regexStr += extractCustomSeparator(input);
 
             input = input.substring(5);
         }
 
-        regexStr.append("]");
+        regexStr += ']';
 
-        return input.split(regexStr.toString(), -1);
+        return input.split(regexStr, -1);
     }
 
     // 문자열을 정수로 변환하는 함수

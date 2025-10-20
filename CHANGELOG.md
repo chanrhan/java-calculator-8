@@ -89,3 +89,8 @@
 ### refactor: remove a keyword 'else'
 
 - `else` 키워드 제거 
+
+### refactor: apply demeter's principle
+
+- 코드 한 줄에 점(.) 하나만 허용하도록 코드를 수정
+  - `StringBuilder` 대신 `String` 덧셈을 활용하여 가독성을 높힘 
