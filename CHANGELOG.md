@@ -75,4 +75,13 @@
 ### refactor(split): change function name
 
 - `StringAdditionCalculator` 의 `separateString()`메서드명을 `split()`으로 변경
-  - 실제 `String.split()` 메서드를 참고하여, 직관적이고 간결한 이름을 선택 
+  - 실제 `String.split()` 메서드를 참고하여, 직관적이고 간결한 이름을 선택
+
+## 2025-10-20
+### refactor: separate function responsibilities
+
+- 각 메서드가 하나의 책임만을 가지도록 메서드를 분리
+
+### refactor: remove unused import
+
+- 사용하지 않는 `import` 제거 

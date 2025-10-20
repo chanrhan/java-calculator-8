@@ -1,7 +1,5 @@
 package calculator;
 
-import javax.swing.plaf.BorderUIResource;
-
 // 문자열 덧셈 계산기 클래스
 public class StringAdditionCalculator {
     // 정규식 메타 문자들의 ASCII 코드
