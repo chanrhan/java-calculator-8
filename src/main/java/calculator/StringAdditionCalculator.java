@@ -102,7 +102,9 @@ public class StringAdditionCalculator {
 
         if (items == null) {
             return 0;
-        } else if (items.length == 0) {
+        }
+
+        if (items.length == 0) {
             throw new IllegalArgumentException("피연산자가 존재하지 않습니다!");
         }
 

@@ -85,3 +85,7 @@
 ### refactor: remove unused import
 
 - 사용하지 않는 `import` 제거 
+
+### refactor: remove a keyword 'else'
+
+- `else` 키워드 제거 
